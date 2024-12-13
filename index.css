@@ -1,0 +1,18 @@
+/* General Styles */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-width: 320px;
+  min-height: calc(100vh - 20px); /* Ensure full height minus some margin */
+  background-color: #ffffff; /* White background for the body */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, p, button {
+  font-family: 'Montserrat', sans-serif; /* Apply Montserrat font globally */
+}

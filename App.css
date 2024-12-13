@@ -1,0 +1,234 @@
+/* General Styles */
+:root {
+  --primary-color: #12cbe4; /* Primary color for buttons and icons */
+  --secondary-color: #031d38; /* Darker color for hover states */
+  --background-color: #999898; /* Dark gray background for the body */
+  --light-background: #e6e1e1; /* Light gray background for chatbot container */
+  --text-color: #333; /* Dark text for contrast */
+  --error-color: red; /* Color for error messages */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-width: 320px;
+  min-height: 100vh; /* Ensure full height */
+  background-color: var(--background-color); /* Use variable for background color */
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+  color: var(--text-color); /* Use variable for text color */
+  font-size: 2.7rem; /* Increase font size */
+  margin-bottom: 20px; /* Optional: Add space below the heading */
+}
+
+/* Chatbot Container */
+.chatbot-container {
+  width: 400px; /* Set width to 400px */
+  height: 100vh; /* Full height of the viewport */
+  padding: 2rem; /* Padding for inner spacing */
+  text-align: center;
+  background-color: var(--light-background); /* Use variable for light gray background */
+}
+
+/* Input Container to hold mic and input section */
+.input-container {
+  position: absolute; /* Positioning relative to chatbot container */
+  bottom: 20px; /* Distance from bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+}
+
+/* Microphone Icon */
+.mic-container {
+  cursor: pointer;
+}
+
+.mic-icon {
+  transition: transform 0.2s; /* Smooth scaling effect */
+  color: var(--primary-color); /* Use variable for icon color */
+}
+
+.mic-container:hover .mic-icon {
+  transform: scale(0.9); /* Scale down on hover for visual feedback */
+}
+
+/* Chat Input Section */
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px; /* Space between mic and input box */
+}
+
+.input-box {
+  flex-grow: 1;
+  font-size: 17px;
+  padding: 17px; /* Increased padding for better touch targets */
+  border-radius: 5px;
+  border: 1px solid #030303; /* Dark border for input box */
+}
+
+.send-button {
+  background-color: var(--primary-color); /* Use variable for button background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px; /* More padding for a button */
+}
+
+.send-button:hover {
+ background-color: var(--secondary-color); /* Darker color on hover for send button */
+}
+
+/* Show Voices Button Styles */
+.show-voices-button {
+ position: absolute; /* Position outside of chatbot container */
+ top: 20px; /* Distance from top of viewport or container */
+ right: 20px; /* Distance from right side of viewport or container */
+ padding: 10px 20px;
+ background-color: var(--primary-color); /* Use variable for button background color */
+ color: white;
+ border-radius: 5px;
+ border: none;
+ cursor: pointer;
+ z-index: 10; /* Ensure it appears above other elements */
+}
+
+.show-voices-button:hover {
+ background-color: var(--secondary-color);/* Darker color on hover*/
+}
+
+/* Voice List Styles */
+.voice-list {
+ position:absolute ;/* Positioning relative to parent*/
+ top :70px ;/* Distance from top*/
+ right :20px ;/* Distance from right*/
+ max-height :200px ;/* Limit height for scrolling*/
+ overflow-y :auto ;/* Enable vertical scrolling*/
+ border :1px solid #ccc ;/* Light gray border*/
+ border-radius :5px ;/* Rounded corners*/
+ background-color:white ;/* White background for contrast*/
+ z-index :9 ;/* Ensure it appears above other elements*/
+}
+
+.voice-item {
+ padding :10px ;/* Padding for each item*/
+ border-bottom :1px solid #f0f0f0 ;/* Light gray separator*/
+}
+
+.voice-item:last-child {
+ border-bottom:none ;/* Remove bottom border from last item*/
+}
+
+.voice-item:hover {
+ background-color:#f0f0f0 ;/* Highlight on hover*/
+}
+
+.voice-item.selected {
+ background-color:#ADD8E6 ;/* Highlight selected voice*/
+}
+
+/* Response Display Styles */
+.response-animation {
+ margin-top :20px ;/* Space above the response bubble*/
+ display:flex ;/* Use flexbox for centering response bubble*/
+ justify-content:center ;/* Center horizontally within container*/
+}
+
+.response-circle {
+ background-color:#12cbe4; /* Light blue for response bubble*/
+ border-radius :50%; /* Circular shape for response bubble*/
+ width :250px; /* Set a fixed width for circle (adjust as needed)*/
+ height :250px; /* Set a fixed height equal to width for perfect circle*/
+ display:flex ;/* Use flexbox for centering text inside circle*/
+ flex-direction :column ;/* Stack text vertically inside circle*/
+ align-items:center ;/* Center content horizontally*/
+ justify-content:center ;/* Center content vertically*/
+ padding :20px ;/* Padding inside the circle*/
+ box-shadow :0 4px 10px rgba(0,0,0,0.2) ;/* Optional shadow for depth*/
+
+ overflow:hidden;    /* Prevent overflow of text outside the circle */
+
+ text-align:center;   /* Center align text inside circle */
+
+}
+
+/* Pulse Animation Effect for Response Circle*/
+@keyframes pulse {
+from { transform :scale(1); }
+to { transform :scale(1.05); }
+}
+
+.response-circle p {
+margin-top :5px ;/* Space between paragraphs inside circle*/
+margin-bottom :5px ;/* Space between paragraphs inside circle*/
+
+color:#333 ;/* Dark text color for contrast inside circle*/
+
+overflow-wrap:anywhere;   /* Allow breaking of long words to fit within the circle */
+
+word-wrap:break-word;
+
+text-align:center ;/* Center align text inside circle*/
+
+max-width:80%;   /* Limit max width of text inside circle to prevent overflow */
+
+}
+
+.response-circle p strong {
+font-weight:bold ;/* Bold for emphasis on labels inside circle*/
+}
+
+/* Error Message Styling */
+.toast-error {
+color:red ;/* Error message color indicating errors clearly to users*/
+}
+
+/* Add this CSS for listening animation on mic icon when recording starts */
+.mic-container.listening {
+ animation:pulse .5s infinite alternate; 
+}
+
+/* Voice Input Modal Styles */
+
+.voice-input-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+}
+
+.circle-background {
+    width:300px; 
+    height:300px; 
+    border-radius:50%; 
+    background-color:#e6e1e1; 
+    display:flex ;
+    flex-direction:center ;
+    align-items:center ;
+    justify-content:center ;
+}
+
+.button-container {
+    display:flex ;
+    justify-content:center ;
+    margin-top:auto ;
+}
+.cancel-button, .mic-button {
+    padding:.5rem .75rem;
+    border-radius:.25rem;
+}
+.cancel-button {
+    background-color:#ff4d4d; 
+}
+.mic-button {
+    background-color:#12cbe4; 
+}
